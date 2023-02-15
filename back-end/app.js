@@ -40,6 +40,24 @@ app.get('/messages', async (req, res) => {
   }
 })
 
+// a route to handle fetching the "About Us" page content
+app.get('/about', async (req, res) => {
+  try {
+    const data = {
+      description: 'I am Alice, a junior NYU student majoring in Interactive Media Art at New York University. I am passionate for Interactive Design, Game Design, and Illustration.',
+      image: "https://i.postimg.cc/kG0QLCqd/elevator.jpg"
+    };
+
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve send data to aboutus page',
+    });
+  }
+});
+
 // a route to handle fetching a single message by its id
 app.get('/messages/:messageId', async (req, res) => {
   // load all messages from database
